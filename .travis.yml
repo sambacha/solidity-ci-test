@@ -1,0 +1,16 @@
+dist: bionic
+sudo: required
+
+language: nodejs
+
+services:
+    - docker 
+
+install:
+    - npm install
+
+script:
+    - sh clean_gh_artfect.sh
+
+after_success:
+  - docker --version 
