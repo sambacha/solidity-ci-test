@@ -1,0 +1,97 @@
+{
+  "name": "solidity-ci-service",
+  "version": "0.0.5",
+  "description": "solidity ci and buildtool",
+  "main": "dist/index.js",
+  "types": "./index.d.ts",
+  "scripts": {
+    "antlr": "sh scripts/antlr.sh",
+    "build": "npm install",
+    "prettier": "find src -name *.js | egrep -v '^src/(lib|antlr4)/' | xargs prettier --no-semi --single-quote --write",
+    "eslint": "eslint src",
+    "pretest": "eslint src && tslint-config-prettier-check ./tslint.json",
+    "test": "nyc mocha --require babel-register",
+    "tslint": "tslint-config-prettier-check ./tslint.json"
+  },
+  "authors": [
+    "sam bacha <sam@freighttrust.com>",
+    "SEE CONTRIBUTORS"
+  ],
+  "homepage": "https://github.com/solidity-ci/core",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solidity-ci/core.git"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@ethereum-waffle/mock-contract": "^3.0.2",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-inline-import": "^3.0.0",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.2.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.2.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "js-scrypt": "^0.2.0",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "raw-loader": "^4.0.0",
+    "semantic-release": "^17.1.1",
+    "sol-profiler": "^2.0.1",
+    "tslint": "5.19.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "3.6.2",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "yarn": "^1.17.3"
+  },
+  "nyc": {
+    "include": [
+      "src/*.js"
+    ]
+  },
+  "dependencies": {
+    "ethereumjs-util": "^7.0.4",
+    "shebang-loader": "0.0.1",
+    "solhint": "^2.0.0",
+    "yargs": "^15.4.1"
+  },
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "master",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "package-lock.json",
+            "npm-shrinkwrap.json"
+          ],
+          "message": "${nextRelease.version}\n\n${nextRelease.notes}"
+        }
+      ],
+      "@semantic-release/release-notes-generator"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/solidity-ci/core/issues"
+  },
+  "keywords": [],
+  "author": ""
+}
