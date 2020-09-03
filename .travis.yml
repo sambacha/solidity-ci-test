@@ -10,7 +10,7 @@ install:
     - npm install
 
 script:
-    - sh clean_gh_artfect.sh
+    - docker build -t solidity-ci/test .
 
 after_success:
   - docker --version 
