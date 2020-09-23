@@ -12,9 +12,6 @@ jobs:
     docker:
       - image: circleci/node:9
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "8f:32:25:a0:59:0b:f4:1b:2b:ab:f7:c2:0a:ea:38:f6"
       - checkout
       - run: curl https://api.github.com/repos/JetBrains/kotlin/releases > notify_kotlin_releases/current.json
       - run: node notify_kotlin_releases/filter-project
