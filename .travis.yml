@@ -1,17 +1,18 @@
+
 # travis-ci
 os: linux
-dist: bionic
-sudo: required
+dist: xenial
+sudo: true
 
-language: nodejs
-    - '10'
-    - '12'
+language: node_js
+node_js:
+- '10'
+- '12'
 
-services:
-    - docker 
+git:
+  quiet: true
+#cache: npm
 
-install:
-    - npm install
+install: npm install 
 
-script:
-    - chmod +x scripts/build.sh && ./scripts/build.sh
+scripts: false
