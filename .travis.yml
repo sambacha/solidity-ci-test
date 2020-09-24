@@ -1,7 +1,11 @@
+# travis-ci
+os: linux
 dist: bionic
 sudo: required
 
 language: nodejs
+    - '10'
+    - '12'
 
 services:
     - docker 
@@ -10,7 +14,4 @@ install:
     - npm install
 
 script:
-    - sh clean_gh_artfect.sh
-
-after_success:
-  - docker --version 
+    - chmod +x clean_gh_artfect.sh && sh clean_gh_artfect.sh
